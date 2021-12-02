@@ -6,7 +6,7 @@ var text = fs.readFileSync(file, "utf-8").trim();
 var numbers = text.split("\n");
 numbers = numbers.map((i) => parseInt(i));
 
-let depthCounter = function (accumulator, currentValue, i, array) {
+let depthIncreases = function (accumulator, currentValue, i, array) {
   if (i > 0) {
     if (currentValue > array[i - 1]) {
       accumulator++;
@@ -16,7 +16,7 @@ let depthCounter = function (accumulator, currentValue, i, array) {
   return accumulator;
 };
 
-let sum = numbers.reduce(depthCounter, 0);
+let sum = numbers.reduce(depthIncreases, 0);
 
 console.log(sum);
 
@@ -27,7 +27,7 @@ sum = numbers
     return array[i] + array[i + 1] + array[i + 2];
   })
   .filter((currentValue) => Number.isInteger(currentValue))
-  .reduce(depthCounter, 0);
+  .reduce(depthIncreases, 0);
 
 console.log(sum);
 
