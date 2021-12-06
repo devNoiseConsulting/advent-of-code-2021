@@ -23,21 +23,13 @@ lines.forEach((line) => {
   let endX = line[1][0];
   let endY = line[1][1];
 
-  if (startX > endX) {
-    startX = endX;
-    endX = line[0][0];
-    dX *= -1;
-
-    startY = endY;
-    endY = line[0][1];
-    dY *= -1;
-  } else if (startY > endY && dX == 0) {
-    startY = endY;
-    endY = line[0][1];
-    dY *= -1;
-  }
-
   if (dX == 0) {
+    if (startY > endY) {
+      startY = endY;
+      endY = line[0][1];
+      dY *= -1;
+    }
+
     if (vents[startX] === undefined) {
       vents[startX] = [];
     }
@@ -50,6 +42,12 @@ lines.forEach((line) => {
       vents[startX][y]++;
     }
   } else if (dY == 0) {
+    if (startX > endX) {
+      startX = endX;
+      endX = line[0][0];
+      dX *= -1;
+    }
+
     for (let x = startX; x <= endX; x += dX) {
       if (vents[x] === undefined) {
         vents[x] = [];
@@ -84,10 +82,6 @@ lines.forEach((line) => {
     endX = line[0][0];
     dX *= -1;
 
-    startY = endY;
-    endY = line[0][1];
-    dY *= -1;
-  } else if (startY > endY && dX == 0) {
     startY = endY;
     endY = line[0][1];
     dY *= -1;
