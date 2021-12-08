@@ -1,7 +1,5 @@
-const { Cipher } = require("crypto");
 var fs = require("fs");
 var path = require("path");
-const { cursorTo } = require("readline");
 
 let file = path.join(__dirname, "..", "data", "day5.txt");
 var text = fs.readFileSync(file, "utf-8").trim().split("\n");
